@@ -1,0 +1,6 @@
+*.pyc
+*~
+__pycache__
+virtenv
+/static
+.DS_Store
