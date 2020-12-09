@@ -1,0 +1,64 @@
+{% load static %}
+{% load humanize %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>wllmrt_prueba</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <link rel="stylesheet" href="{%static 'css/pantalla_inicial.css'%}">
+  </head>
+  <body>
+    <section class="hero is-info">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">
+            Muro Mercado
+          </h1>
+          <h2 class="subtitle">
+            <!-- <input class="input is-rounded" type="text" placeholder="Rounded input"> -->
+            <div class="control has-icons-left has-icons-right">
+              <input class="input is-rounded" type="text" placeholder="Buscar producto">
+              <span class="icon is-medium is-left">
+                <i class="fas fa-search"></i>
+              </span>
+            </div>
+          </h2>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+    <div class="container">
+      <div class="columns is-gapless">
+        {% for prod in items %}
+          {% if forloop.counter|divisibleby:5 %}
+            <div class="columns is-gapless">
+          {% endif %}
+          <div class="column">
+            <div class="card" style="width: 14rem;">
+              <div class="card-image">
+                <figure class="image is-4by3">
+                  <img src="https://{{ prod.image }}" alt="Placeholder image">
+                </figure>
+              </div>
+              <div class="card-content">
+                <div class="content">
+                  <p class="subtitle is-6">{{ prod.brand }}</p>
+                  <h5 class="title is-5">{{ prod.description }}</h5>
+                  <h4 class="title is-4">${{ prod.price|intcomma }} <span class="tag is-success">50%</span></h4>
+                  <p class="subtitle is-6"><s>$400.000</s></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% if forloop.counter|divisibleby:4 %}
+          </div>
+          {% endif %}
+        {% endfor %}
+    </div>
+  </section>
+
+  <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
+  </body>
+</html>
