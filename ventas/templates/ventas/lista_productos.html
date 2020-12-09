@@ -1,0 +1,54 @@
+{% extends 'ventas/pantalla_inicial.html' %}
+{% load extras %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+<section class="section" id="section_listaProductos">
+  <div class="container">
+    <div class="columns is-multiline" id="zona_productos">
+      {% if items %}
+        {% for prod in items %}
+        <div class="column is-one-fifth">
+          <div class="card" >
+            <div class="card-image">
+              <figure class="image is-4by3">
+                <img src="https://{{ prod.image }}" alt="">
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="content">
+                <p class="subtitle is-6">{{ prod.brand }}</p>
+                <h5 class="title is-5">{{ prod.description }}</h5>
+
+                {% if palidrome == 'Y' %}
+                  <h4 class="title is-4 help is-info">${{ prod.price|calcular_precio_descuento|intcomma}} <span class="tag is-success">50%</span></h4>
+                  <p class="subtitle is-6"><s>${{ prod.price|intcomma }}</s></p>
+                {% else %}
+                  <h4 class="title is-4 help is-info">${{ prod.price|intcomma }}  <!--<span class="tag is-success">50%</span>--></h4>
+                {% endif %}
+
+                <div class="control">
+                  <button class="button is-primary btn_verProd">Ver Producto</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      {% else %}
+      <section class="section" id="mensaje_ceroProductos">
+        <div class="container">
+          <article class="message is-info has-text-centered">
+            <div class="message-body">
+              <strong>0 productos encontrados</strong>
+              <div class="fa-3x"><i class="far fa-frown"></i></div>
+            </div>
+          </article>
+        </div>
+      </section>
+      {% endif %}
+
+    </div>
+  </div>
+</section>
+{% endblock %}

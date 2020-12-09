@@ -14,17 +14,17 @@
       <div class="hero-body">
         <div class="container">
           <h1 class="title">
-            Muro Mercado
+            <a href="/">Muro Mercado</a>
           </h1>
           <div class="field has-addons">
             <div class="control is-expanded has-icons-left">
-              <input class="input" type="text" placeholder="Buscar producto">
+              <input class="input" type="text" placeholder="Buscar producto" id="inpt_busqueda">
               <span class="icon is-medium is-left">
                 <i class="fas fa-search"></i>
               </span>
             </div>
             <div class="control">
-              <a class="button is-primary">
+              <a class="button is-primary" id="btn_buscaProducto">
                 Buscar
               </a>
             </div>
@@ -32,35 +32,20 @@
         </div>
       </div>
     </section>
-    <section class="section">
+    {% block content %}
+    {% endblock %}
+    <section class="section oculto" id="section_mensajeBuscando">
       <div class="container">
-        <div class="columns is-multiline">
-          {% for prod in items %}
-          <div class="column is-one-fifth">
-            <div class="card" >
-              <div class="card-image">
-                <figure class="image is-4by3">
-                  <img src="https://{{ prod.image }}" alt="">
-                </figure>
-              </div>
-              <div class="card-content">
-                <div class="content">
-                  <p class="subtitle is-6">{{ prod.brand }}</p>
-                  <h5 class="title is-5">{{ prod.description }}</h5>
-                  <h4 class="title is-4 help is-info">${{ prod.price|intcomma }}  <!--<span class="tag is-success">50%</span>--></h4>
-                  <p class="subtitle is-6 oculto"><s>${{ prod.price|intcomma }}</s></p>
-                  <div class="control">
-                    <button class="button is-primary">Ver Producto</button>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <article class="message is-info has-text-centered">
+          <div class="message-body">
+            <strong>Buscando resultados ...</strong>
+            <div class="fa-3x"><i class="fas fa-spinner fa-pulse"></i></div>
           </div>
-          {% endfor %}
-        </div>
+        </article>
       </div>
     </section>
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="{%static 'js/eventos.js'%}"></script>
   <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
   </body>
 </html>
