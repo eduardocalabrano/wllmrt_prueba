@@ -19,14 +19,12 @@
               <div class="content">
                 <p class="subtitle is-6">{{ prod.brand }}</p>
                 <h5 class="title is-5">{{ prod.description }}</h5>
-
-                {% if palidrome == 'Y' %}
+                {% if palindrome == 'Y' %}
                   <h4 class="title is-4 help is-info">${{ prod.price|calcular_precio_descuento|intcomma}} <span class="tag is-success">50%</span></h4>
                   <p class="subtitle is-6"><s>${{ prod.price|intcomma }}</s></p>
                 {% else %}
-                  <h4 class="title is-4 help is-info">${{ prod.price|intcomma }}  <!--<span class="tag is-success">50%</span>--></h4>
+                  <h4 class="title is-4 help is-info">${{ prod.price|intcomma }}</h4>
                 {% endif %}
-
                 <div class="control">
                   <button class="button is-primary btn_verProd">Ver Producto</button>
                 </div>
@@ -47,8 +45,29 @@
         </div>
       </section>
       {% endif %}
-
     </div>
+    {% if num_paginas %}
+    <nav class="pagination is-rounded" role="navigation" aria-label="pagination">
+      {% if ant_pagina and ant_pagina >= 1 %}
+      <a class="pagination-previous" href="/all/{{ant_pagina}}"><< Anterior </a>
+      {% else %}
+      <a class="pagination-previous" disabled><< Anterior </a>
+      {% endif %}
+      {% if sgte_pagina > 1 %}
+      <a class="pagination-next" href="/all/{{sgte_pagina}}">Siguiente >></a>
+      {% endif %}
+    </nav>
+    {% endif %}
+  </div>
+</section>
+<section class="section oculto" id="section_mensajeBuscando">
+  <div class="container">
+    <article class="message is-info has-text-centered">
+      <div class="message-body">
+        <strong>Buscando resultados ...</strong>
+        <div class="fa-3x"><i class="fas fa-spinner fa-pulse"></i></div>
+      </div>
+    </article>
   </div>
 </section>
 {% endblock %}

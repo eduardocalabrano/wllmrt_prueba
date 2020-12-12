@@ -80,13 +80,25 @@ WSGI_APPLICATION = 'desafio_wallmart.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'djongo',
+#         'NAME': 'local_wallmart',
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'local_wallmart',
+        'CLIENT': {
+           "name": 'dataCloud',
+           "host": 'mongodb+srv://Eduardo_pruebas:eduardowallmart@cluster0.bznap.mongodb.net/?retryWrites=true&w=majority',
+           "username": 'Eduardo_pruebas',
+           "PASSWORD": 'eduardowallmart',
+           "authMechanism": "SCRAM-SHA-1",
+        },
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
