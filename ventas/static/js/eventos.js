@@ -10,6 +10,6 @@ $('#btn_buscaProducto').click(function(){
     window.location.replace("/filtro/"+prod_buscar);
   }
   else{
-    // Insertar algún mensaje al usuario
+    console.error('Al buscar por marca o descripción, se debe ingresar al menos tres caracteres')
   }
 });

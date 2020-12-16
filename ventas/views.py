@@ -5,7 +5,7 @@ from django.db.models import Q
 
 def carga_inicial(request):
     # Se muestran todos los productos en una primera carga
-    items = Producto.objects.values('brand', 'image', 'description', 'price')
+    items = Producto.objects.values('brand', 'image', 'description', 'price').order_by('id')
     p = Paginator(items, 15)
     page1 = p.page(1)
     total_paginas = p.num_pages
@@ -18,7 +18,7 @@ def productos_por_pagina(request, pagina):
     #vista que entrega el listado de productos sin filtro según el número de página solicitado
     next_page = 0
     prev_page = 1
-    items = Producto.objects.values('brand', 'image', 'description', 'price')
+    items = Producto.objects.values('brand', 'image', 'description', 'price').order_by('id')
     p = Paginator(items, 15)
     total_paginas = p.num_pages
     pagina_solicitada = p.page(pagina)
@@ -41,7 +41,7 @@ def productos_filtrados(request, cadena):
         resultado = Producto.objects.values('brand', 'image', 'description', 'price').filter(id=cadena)[:1]
     else:
         # En caso de que la cadena no sea un ID, se realiza la búsqueda en brand y description sin limite de productos
-        resultado = Producto.objects.values('brand', 'image', 'description', 'price').filter(Q(brand__contains=cadena)|Q(description__contains=cadena))
+        resultado = Producto.objects.values('brand', 'image', 'description', 'price').filter(Q(brand__icontains=cadena)|Q(description__icontains=cadena))
     if(len(cadena) >= 3 and (cadena == cadena[::-1])):
         # Se evalua el largo de la cadena (min. 3) y que esta sea un palindrome.
         pal = 'Y'

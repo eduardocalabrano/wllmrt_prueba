@@ -8,5 +8,9 @@ class Producto(models.Model):
     image = models.URLField()
     price = models.IntegerField()
 
+    @property
+    def tiene_precio(self):
+        return self.price > 0
+
     def __str__(self):
         return self.brand
