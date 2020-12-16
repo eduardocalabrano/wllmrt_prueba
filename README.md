@@ -19,7 +19,7 @@ Aplicativo web que contiene un buscador y una sección de resultados que muestra
 
 ## Pruebas
 
-Solo hay tres pruebas y se ejecutan con la linea de comandos "pytest"
+Solo hay un test y se ejecutan con la linea de comandos "pytest". No se pudo resolver a tiempo problema con otros test que al interactuar con la BD Mongo, elimina los registros de la colección de productos.
 
 ## Capturas
 
